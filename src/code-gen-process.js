@@ -13,6 +13,7 @@ const { translate: translateToJS } = require("./translators/JavaScript");
 const ts = require("typescript");
 const { CodeFormatter } = require("./code-formatter");
 const { pascalCase } = require("./util/pascal-case");
+const { kebabCase } = require("./util/kebab-case");
 const { internalCase } = require("./util/internal-case");
 
 class CodeGenProcess {
@@ -351,7 +352,7 @@ class CodeGenProcess {
               });
 
               apiFileInfos.push(
-                this.createOutputFileInfo(configuration, pascalCase(route.moduleName), apiModuleContent),
+                this.createOutputFileInfo(configuration, `${kebabCase(this.fileSystem.cropExtension(route.moduleName))}/index.ts`, apiModuleContent),
               );
             }
 
